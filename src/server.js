@@ -1,5 +1,3 @@
-require('dotenv').config();
-
 const path = require('path');
 const express = require('express');
 const { getMetaDashboardData } = require('./kommo');
@@ -50,5 +48,5 @@ app.get('*', (_req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Painel Kommo disponível em http://localhost:${port}`);
+  console.log(`Painel Kommo disponível na porta ${port}`);
 });
