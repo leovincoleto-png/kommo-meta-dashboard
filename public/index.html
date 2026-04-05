@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Painel Meta Ads | Kommo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <div>
+        <p class="eyebrow">Kommo + Meta Ads</p>
+        <h1>Painel de campanhas</h1>
+        <p class="subtitle">Leads com <strong>utm_source = meta_ads</strong>, agrupados por campanha, etapa atual e valor em <strong>price</strong>.</p>
+      </div>
+      <div class="actions">
+        <button id="refreshButton" class="ghost-button" type="button">Atualizar</button>
+      </div>
+    </header>
+
+    <section class="filters-card">
+      <div class="filter-group">
+        <label for="fromDate">De</label>
+        <input id="fromDate" type="date" />
+      </div>
+      <div class="filter-group">
+        <label for="toDate">Até</label>
+        <input id="toDate" type="date" />
+      </div>
+      <div class="filter-group filter-buttons">
+        <button id="currentMonthButton" type="button">Mês atual</button>
+        <button id="applyFilterButton" class="primary-button" type="button">Aplicar período</button>
+      </div>
+      <div class="filter-meta">
+        <span id="periodLabel">Carregando período...</span>
+        <span id="autoRefreshLabel">Autoatualização: --</span>
+      </div>
+    </section>
+
+    <section class="cards-grid" id="summaryCards">
+      <article class="metric-card">
+        <span class="metric-label">Leads Meta Ads</span>
+        <strong class="metric-value" id="totalLeads">--</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">Campanhas</span>
+        <strong class="metric-value" id="totalCampaigns">--</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">Valor total vendido</span>
+        <strong class="metric-value" id="totalSalesValue">--</strong>
+      </article>
+      <article class="metric-card">
+        <span class="metric-label">Leads com valor</span>
+        <strong class="metric-value" id="totalLeadsWithValue">--</strong>
+      </article>
+    </section>
+
+    <section class="table-card">
+      <div class="section-heading">
+        <div>
+          <p class="eyebrow">Resumo por campanha</p>
+          <h2>Campanhas Meta Ads</h2>
+        </div>
+      </div>
+      <div id="campaignContainer" class="campaign-list"></div>
+      <div id="emptyState" class="empty-state hidden">
+        Nenhum lead com <strong>utm_source = meta_ads</strong> foi encontrado no período.
+      </div>
+    </section>
+  </div>
+
+  <template id="campaignTemplate">
+    <article class="campaign-card">
+      <div class="campaign-header">
+        <div>
+          <h3 class="campaign-name"></h3>
+          <p class="campaign-subtitle"></p>
+        </div>
+        <div class="campaign-values">
+          <div>
+            <span class="chip-label">Leads</span>
+            <strong class="chip-value leads-count"></strong>
+          </div>
+          <div>
+            <span class="chip-label">Valor</span>
+            <strong class="chip-value sales-value"></strong>
+          </div>
+        </div>
+      </div>
+
+      <div class="campaign-body">
+        <div class="stages-panel">
+          <h4>Etapas atuais</h4>
+          <div class="stages-list"></div>
+        </div>
+        <div class="leads-panel">
+          <h4>Leads da campanha</h4>
+          <div class="lead-rows"></div>
+        </div>
+      </div>
+    </article>
+  </template>
+
+  <script src="/app.js"></script>
+</body>
+</html>
